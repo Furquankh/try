@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 42 33% 97%;        /* #F9F8F6 ivory */
+  --foreground: 210 5% 11%;        /* #1A1C1D */
+  --card: 40 30% 98%;              /* #FCFBF9 */
+  --card-foreground: 210 5% 11%;
+  --popover: 40 30% 98%;
+  --popover-foreground: 210 5% 11%;
+  --primary: 346 60% 24%;          /* #63192B burgundy */
+  --primary-foreground: 42 33% 97%;
+  --secondary: 155 41% 21%;        /* #1F4A38 forest */
+  --secondary-foreground: 42 33% 97%;
+  --muted: 38 17% 93%;             /* #F0EFEA */
+  --muted-foreground: 210 3% 38%;  /* #5C5F62 */
+  --accent: 38 17% 93%;
+  --accent-foreground: 210 5% 11%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 42 33% 97%;
+  --border: 36 22% 87%;            /* #E5E1D8 */
+  --input: 36 22% 87%;
+  --ring: 346 60% 24%;
+  --radius: 0.25rem;
+
+  --chart-1: 346 60% 24%;
+  --chart-2: 155 41% 21%;
+  --chart-3: 32 84% 44%;
+  --chart-4: 217 71% 45%;
+  --chart-5: 271 60% 50%;
+}
+
+* { border-color: hsl(var(--border)); }
+
+html, body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-feature-settings: "ss01", "ss02";
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.13 0 0 0 0 0.09 0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+#root { position: relative; z-index: 1; }
+
+.font-serif { font-family: 'Cormorant Garamond', 'Source Serif Pro', Georgia, serif; }
+.font-mono  { font-family: 'IBM Plex Mono', monospace; }
+
+.overline {
+  font-family: 'IBM Plex Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+}
+
+.serif-numerals {
+  font-family: 'Cormorant Garamond', serif;
+  font-feature-settings: "lnum" 1;
+  font-weight: 600;
+}
+
+/* Subtle paper card */
+.paper {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 2px;
+}
+
+/* Selection */
+::selection {
+  background: #63192B;
+  color: #F9F8F6;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d4cdbf; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #b8aa92; }
+
+/* Page fade-in */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 320ms ease-out both; }
+
+/* Side rule (academic motif) */
+.side-rule { border-left: 2px solid #63192B; padding-left: 1rem; }
+
+/* Decorative ornament */
+.ornament {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: #63192B;
+  font-family: 'Cormorant Garamond', serif;
+}
+.ornament::before, .ornament::after {
+  content: ""; height: 1px; width: 1.5rem; background: currentColor; opacity: 0.6;
+}
