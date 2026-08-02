@@ -41,9 +41,9 @@ REFRESH_TTL_DAYS = 7
 UPLOAD_DIR = Path(os.environ.get("UPLOAD_DIR", "/app/uploads"))
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
-mongo_url = os.environ["MONGO_URL"]
+mongo_url = os.environ.get("MONGO_URL", "mongodb://localhost:27017")
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ["DB_NAME"]]
+db = client[os.environ.get("DB_NAME", "iqac")]
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 logger = logging.getLogger("iqac")
@@ -97,11 +97,11 @@ def create_access_token(uid: str, email: str, role: str) -> str:
         "exp": _now() + timedelta(minutes=ACCESS_TTL_MIN),
         "type": "access",
     }
-    return jwt.encode(payload, os.environ["JWT_SECRET"], algorithm=JWT_ALG)
+    return jwt.encode(payload, os.environ.get("JWT_SECRET", "dev-secret-change-me"), algorithm=JWT_ALG)
 
 def create_refresh_token(uid: str) -> str:
     payload = {"sub": uid, "exp": _now() + timedelta(days=REFRESH_TTL_DAYS), "type": "refresh"}
-    return jwt.encode(payload, os.environ["JWT_SECRET"], algorithm=JWT_ALG)
+    return jwt.encode(payload, os.environ.get("JWT_SECRET", "dev-secret-change-me"), algorithm=JWT_ALG)
 
 def set_auth_cookies(response: Response, access: str, refresh: str):
     response.set_cookie("access_token", access, httponly=True, secure=False,
@@ -146,7 +146,7 @@ async def get_current_user(request: Request) -> dict:
     if not token:
         raise HTTPException(status_code=401, detail="Not authenticated")
     try:
-        payload = jwt.decode(token, os.environ["JWT_SECRET"], algorithms=[JWT_ALG])
+        payload = jwt.decode(token, os.environ.get("JWT_SECRET", "dev-secret-change-me"), algorithms=[JWT_ALG])
         if payload.get("type") != "access":
             raise HTTPException(status_code=401, detail="Invalid token type")
         user = await db.users.find_one({"_id": ObjectId(payload["sub"])})
