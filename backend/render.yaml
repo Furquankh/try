@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: iqac-portal-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONGO_URL
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: ADMIN_EMAIL
+        value: admin@example.com
+      - key: ADMIN_PASSWORD
+        value: admin123
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: UPLOAD_DIR
+        value: /app/uploads
