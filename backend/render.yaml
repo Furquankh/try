@@ -19,4 +19,4 @@ services:
       - key: CORS_ORIGINS
         value: "*"
       - key: UPLOAD_DIR
-        value: /app/uploads
+        value: ./uploads
