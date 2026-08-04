@@ -53,7 +53,7 @@ import os
 from motor.motor_asyncio import AsyncIOMotorClient
 
 client = AsyncIOMotorClient(
-    "mongodb+srv://YOUR_USERNAME:6gsK5y6cQMJrh6K4@cluster1.pbrox60.mongodb.net/IQAC1?retryWrites=true&w=majority&appName=Cluster1"
+    "mongodb+srv://USERNAME:6gsK5y6cQMJrh6K4@cluster1.pbrox60.mongodb.net/IQAC1?retryWrites=true&w=majority&appName=Cluster1"
 )
 
 db = client["IQAC1"]   # Replace "iqac" with your database name
