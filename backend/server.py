@@ -57,7 +57,11 @@ MONGO_URL = os.getenv(
     "mongodb+srv://khaamkarfurquan4busy_db_user:6gsK5y6cQMJrh6K4@cluster1.pbrox60.mongodb.net/IQAC1?retryWrites=true&w=majority&appName=Cluster1",
 )
 
-client = AsyncIOMotorClient(MONGO_URL)
+client = AsyncIOMotorClient(
+    MONGO_URL,
+    serverSelectionTimeoutMS=15000,
+    tlsAllowInvalidCertificates=True,
+)
 
 db = client["IQAC1"]   # Replace "iqac" with your database name
 
