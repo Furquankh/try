@@ -52,7 +52,7 @@ UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 import os
 
 MONGO_URL = os.getenv("mongodb+srv://khaamkarfurquan4busy_db_user:6gsK5y6cQMJrh6K4@cluster1.pbrox60.mongodb.net/?appName=Cluster1")
-client = AsyncIOMotorClient(mongo_url)
+client = AsyncIOMotorClient(mongodb+srv://khaamkarfurquan4busy_db_user:6gsK5y6cQMJrh6K4@cluster1.pbrox60.mongodb.net/?appName=Cluster1)
 db = client[os.environ.get("DB_NAME", "iqac")]
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
