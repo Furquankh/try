@@ -54,7 +54,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 
 MONGO_URL = os.getenv(
     "MONGO_URL",
-    "mongodb+srv://USERNAME:6gsK5y6cQMJrh6K4@cluster1.pbrox60.mongodb.net/IQAC1?retryWrites=true&w=majority&appName=Cluster1",
+    "mongodb+srv://khaamkarfurquan4busy_db_user:6gsK5y6cQMJrh6K4@cluster1.pbrox60.mongodb.net/IQAC1?retryWrites=true&w=majority&appName=Cluster1",
 )
 
 client = AsyncIOMotorClient(MONGO_URL)
