@@ -53,8 +53,8 @@ import os
 from motor.motor_asyncio import AsyncIOMotorClient
 
 client = AsyncIOMotorClient(os.getenv("mongodb+srv://khaamkarfurquan4busy_db_user:6gsK5y6cQMJrh6K4@cluster1.pbrox60.mongodb.net/?appName=Cluster1"))
-logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
-logger = logging.getLogger("iqac")
+
+db = client["IQAC1"]   # Replace "iqac" with your database name
 
 ROLES = ("admin", "coordinator", "hod", "staff")
 STATUSES = ("draft", "submitted", "under_review", "approved", "rejected", "revision_requested")
