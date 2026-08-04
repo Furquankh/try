@@ -38,7 +38,15 @@ from reportlab.pdfgen import canvas as rl_canvas
 JWT_ALG = "HS256"
 ACCESS_TTL_MIN = 60 * 8       # 8 hours for academic portal convenience
 REFRESH_TTL_DAYS = 7
-UPLOAD_DIR = Path(os.environ.get("UPLOAD_DIR", "/app/uploads"))
+BASE_DIR = Path(__file__).resolve().parent
+
+UPLOAD_DIR = Path(
+    os.environ.get(
+        "UPLOAD_DIR",
+        str(BASE_DIR / "uploads")
+    )
+)
+
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 mongo_url = os.environ.get("MONGO_URL", "mongodb://localhost:27017")
