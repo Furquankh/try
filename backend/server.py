@@ -52,10 +52,8 @@ UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 import os
 from motor.motor_asyncio import AsyncIOMotorClient
 
-MONGO_URL = os.getenv(
-    "MONGO_URL",
-    "mongodb+srv://khaamkarfurquan4busy_db_user:6gsK5y6cQMJrh6K4@cluster1.pbrox60.mongodb.net/?appName=Cluster1",
-)
+client = AsyncIOMotorClient(os.environ["mongodb+srv://khaamkarfurquan4busy_db_user:6gsK5y6cQMJrh6K4@cluster1.pbrox60.mongodb.net/?appName=Cluster1"])
+db = client["IQAC1"]
 
 client = AsyncIOMotorClient(
     MONGO_URL,
