@@ -52,9 +52,12 @@ UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 import os
 from motor.motor_asyncio import AsyncIOMotorClient
 
-client = AsyncIOMotorClient(
-    "mongodb+srv://USERNAME:6gsK5y6cQMJrh6K4@cluster1.pbrox60.mongodb.net/IQAC1?retryWrites=true&w=majority&appName=Cluster1"
+MONGO_URL = os.getenv(
+    "MONGO_URL",
+    "mongodb+srv://USERNAME:6gsK5y6cQMJrh6K4@cluster1.pbrox60.mongodb.net/IQAC1?retryWrites=true&w=majority&appName=Cluster1",
 )
+
+client = AsyncIOMotorClient(MONGO_URL)
 
 db = client["IQAC1"]   # Replace "iqac" with your database name
 
